@@ -30,7 +30,7 @@ services:
     networks:
       - book_list_network
     volumes:
-      - type: volume  
+      - type: volume  #ボリュームは、コンテナが停止したり削除された場合でも、データを保持するために使用されます
         source: book_list_db_volume
         target: /var/lib/postgresql/data
       - type: bind
