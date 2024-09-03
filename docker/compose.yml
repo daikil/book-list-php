@@ -1,19 +1,29 @@
+#DockerComposeファイルのバージョンを指定しています。
+#version: '3'はDocker Composeのバージョン3を使用することを示しており、
+#一般的にDockerのスウォームモードや他の新機能をサポートしています。
+#バージョン3は、Composeファイルの構造や利用可能なオプションに影響します。
 version: '3'
 
+#servicesは、実際にDockerコンテナとして実行されるサービスを定義します。
+#この例では、webというサービスが定義されています。各サービスは、独立したコンテナとして動作します。
 services:
   web:
     container_name: book_list_web_container
     build:
-      context: ./web
-      dockerfile: Dockerfile
-    environment:
+      context: ./web  #Dockerビルドのコンテキストを指定しています。./webディレクトリがビルドの元となるファイルの場所です。
+      dockerfile: Dockerfile #Dockerfileの名前と場所を指定します。ここでは、./webディレクトリ内のDockerfileを使用してイメージをビルドします。
+    environment:  #コンテナ内の環境変数を指定します。
       TZ: "Asia/Tokyo"
-    ports:
+    ports:  #portsセクションは、ホストマシンとコンテナ間のポートマッピングを設定します。
+      #ホストのポート8088をコンテナのポート80にマッピングします。
+      #ホストのポート8088にアクセスすると、コンテナ内のポート80にリクエストが転送されます。
       - "8088:80"
-    volumes:
-      - type: bind
-        source: ../app
-        target: /var/www/html
+    volumes:  #volumesセクションは、ホストマシンとコンテナ間のファイルシステムをマウントする方法を指定します。
+      - type: bind #ホストのディレクトリをコンテナにバインドするバインドマウントを指定します。
+        #バインド　ホスト上のファイルやディレクトリの変更が、リアルタイムでコンテナ内でも反映されます。
+        #逆に、コンテナ内でファイルを変更すると、その変更がホスト上のファイルにも反映されます。
+        source: ../app  #マウントするホストのディレクトリを指定します。
+        target: /var/www/html #コンテナ内のどのディレクトリにマウントするかを指定します。
     networks:
       - book_list_network
 
