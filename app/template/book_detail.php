@@ -45,8 +45,12 @@
     </div>
     <div>
         <form action="/htdocs/edit.php" method="post" name="detail">
+            <!-- フォームの送信先はedit.phpで、POSTメソッドを使用してデータを送信 -->
+            <!-- hiddenフィールドに、$dataの内容をJSON形式に変換して埋め込む -->
             <input type="hidden" name="detail" value="<?php echo htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8'); ?>">
+            <!-- 更新ボタンを押すと、フォームが送信される -->
             <button type="submit">更新</button>
+            <!-- 戻るボタン。押すとbook.phpに遷移する -->
             <input type="button" value="戻る" onclick="location.href='book.php'; return false;">
         </form>
     </div>
