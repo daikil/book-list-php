@@ -4,6 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>書籍一覧</title>
+    <link rel="stylesheet" href="../htdocs/css/style.css">
 </head>
 <body>
 <div id="header">
