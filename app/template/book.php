@@ -1,5 +1,6 @@
 <?php declare(strict_types=1); ?>
 <!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>書籍一覧</title>
