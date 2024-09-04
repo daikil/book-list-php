@@ -31,9 +31,17 @@ class DatabaseAccess {
     }
 
     public static function deleteBy(string $id) {
+        // DELETEクエリを作成。特定の'id'のレコードを削除する。
+        // :idはプレースホルダで、実際のIDは後でバインドされる。
         $sql = "DELETE FROM books WHERE id = :id";
+
+        // データベースへの接続インスタンスを取得し、SQL文を準備する。
         $stmt = self::getInstance()->prepare($sql);
+
+        // SQL文のプレースホルダ ':id' にバインドするパラメータを設定する。
         $param['id'] = $id;
+
+        // 準備したSQLを実行し、指定された'id'のレコードを削除する。
         $stmt->execute($param);
     }
 }
