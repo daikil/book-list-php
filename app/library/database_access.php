@@ -38,7 +38,13 @@ class DatabaseAccess {
     }
 
     public static function insert(string $title, string $isbn, int $price, string $author, string $publisher_name, string $created) {
-        $sql = "INSERT INTO books (title, isbn, price, author, publisher_name, created) VALUES (:title, :isbn, :price, :author, :publisher_name, :created);";
+        // INSERT文を作成。booksテーブルに新しい書籍レコードを挿入する。
+        // 各フィールドに対応するプレースホルダ (:title, :isbn, :price など) を使用。
+        $sql = "INSERT INTO books (title, isbn, price, author, publisher_name, created) 
+            VALUES (:title, :isbn, :price, :author, :publisher_name, :created);";
+
+        // SQL文にバインドするためのパラメータを連想配列に格納。
+        // 各プレースホルダに、引数として受け取った値がバインドされる。
         $param = [
             "title" => $title,
             "isbn" => $isbn,
@@ -47,7 +53,12 @@ class DatabaseAccess {
             "publisher_name" => $publisher_name,
             "created" => $created
         ];
+
+        // データベース接続のインスタンスを取得し、SQL文を準備する。
         $stmt = self::getInstance()->prepare($sql);
+
+        // パラメータをバインドしてSQLを実行し、実行結果を返す。
+        // 成功すれば true、失敗すれば false を返す。
         return $stmt->execute($param);
     }
 }
