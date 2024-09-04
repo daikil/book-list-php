@@ -1,5 +1,6 @@
 <?php declare(strict_types=1); ?>
 <!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>書籍一覧</title>
@@ -29,7 +30,11 @@
             <tbody>
             <?php foreach ($data as $row) { ?>
                 <tr>
-                    <td><?php echo $row["title"]; ?></td>
+                    <td>
+                        <a href=<?php echo "/htdocs/book_detail.php?id=" . $row["id"] ?>>
+                            <?php echo $row["title"]; ?>
+                        </a>
+                    </td>
                     <td><?php echo $row["author"]; ?></td>
                     <td><?php echo $row["publisher_name"]; ?></td>
                 </tr>
