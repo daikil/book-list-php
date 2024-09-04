@@ -23,10 +23,23 @@ class DatabaseAccess {
     }
 
     public static function fetchBy(string $id) {
+        // SQLクエリを定義します。'books'テーブルから特定の'id'のレコードを取得し、
+        // id順に並べ替えます。:idはプレースホルダで、後で実際の値に置き換えられます。
         $sql = "SELECT * FROM books WHERE id = :id";
+
+        // self::getInstance()はデータベースへの接続インスタンス(PDO)を取得し、
+        // prepareメソッドでSQLクエリを準備します。
         $stmt = self::getInstance()->prepare($sql);
+
+        // プレースホルダ ':id' に対応する実際のパラメータを設定します。
+        // $param配列に 'id' キーとして、引数 $id の値を設定します。
         $param['id'] = $id;
+
+        // SQLクエリを実行します。executeメソッドで、プレースホルダに対応するパラメータを渡します。
         $stmt->execute($param);
+
+        // 結果セットの最初の行を連想配列として取得します。該当するレコードがあれば返し、
+        // なければ false が返されます。
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
