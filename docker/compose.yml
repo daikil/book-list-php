@@ -36,7 +36,10 @@ services:
       - type: bind
         source: ./db/init
         target: /docker-entrypoint-initdb.d
-    command: postgres -`c log_destination=stderr -c log_statement=all -c log_connections=on -c log_disconnections=on
+    command: postgres -c log_destination=stderr -c log_statement=all -c log_connections=on -c log_disconnections=on
 
 networks:
   book_list_network:
+
+volumes:
+  book_list_db_volume:
