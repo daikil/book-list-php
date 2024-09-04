@@ -25,6 +25,11 @@
                 <th>タイトル</th>
                 <th>著者</th>
                 <th>出版社</th>
+                <td>
+                    <form action="/htdocs/form.php" method="get">
+                        <button type="submit">登録</button>
+                    </form>
+                </td>
             </tr>
             </thead>
             <tbody>
